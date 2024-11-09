@@ -4,7 +4,9 @@
   "description": "A simple scoreboard application using Node.js and Socket.io",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "npm ci && npm run build", 
+    "postinstall": "npm rebuild sqlite3"  
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -13,5 +15,8 @@
     "sqlite3": "^5.1.7"
   },
   "author": "Your Name",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": "14.x"  
+  }
 }
