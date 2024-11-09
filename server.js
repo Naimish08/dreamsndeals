@@ -62,6 +62,21 @@ app.get('/teams', (req, res) => {
     });
 });
 
+// Route to get data after updating points to confirm
+app.get('/team/:name', (req, res) => {
+    const teamName = req.params.name;
+    db.get(`SELECT name, points FROM teams WHERE name = ?`, [teamName], (err, row) => {
+        if (err) {
+            console.error("Error retrieving team data:", err.message);
+            res.status(500).send("Error retrieving team data");
+        } else if (!row) {
+            res.status(404).send("Team not found");
+        } else {
+            res.json(row);
+        }
+    });
+});
+
 // Route to add points to a team
 app.post('/admin/add-points', (req, res) => {
     const { team, points } = req.body;
